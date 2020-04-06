@@ -11,6 +11,6 @@ public class Source {
     }
 
     public String getFrontendUrl() {
-        return "";
+        return "https://github.com/gustavovitor/erriaga-ui";
     }
 }

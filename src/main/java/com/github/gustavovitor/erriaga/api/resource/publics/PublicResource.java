@@ -12,7 +12,7 @@ public class PublicResource {
 
     @GetMapping
     public ResponseEntity<Source> source() {
-        return ResponseEntity.ok("");
+        return ResponseEntity.ok(new Source());
     }
 
 }
