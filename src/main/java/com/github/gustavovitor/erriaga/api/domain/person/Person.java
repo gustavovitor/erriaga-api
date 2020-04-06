@@ -1,0 +1,61 @@
+package com.github.gustavovitor.erriaga.api.domain.person;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
+
+@Data
+@Entity
+@Table(name = "persons")
+@ApiModel("Pessoa")
+public class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @NotNull
+    @Size(max = 255)
+    @ApiModelProperty("Nome")
+    private String name;
+
+    @Enumerated(EnumType.STRING)
+    @ApiModelProperty("Gênero")
+    private Gender gender;
+
+    @Email
+    @ApiModelProperty("Email Válido")
+    private String email;
+
+    @NotNull
+    @ApiModelProperty("Data de Nascimento")
+    private LocalDate birthDate;
+
+    @Size(max = 255)
+    @ApiModelProperty("Naturalidade")
+    private String birthPlace;
+
+    @Size(max = 255)
+    @ApiModelProperty("Nacionalidade")
+    private String nationality;
+
+    @CPF
+    @NotNull
+    @Column(unique = true)
+    @ApiModelProperty("CPF Válido")
+    private String cpf;
+}
