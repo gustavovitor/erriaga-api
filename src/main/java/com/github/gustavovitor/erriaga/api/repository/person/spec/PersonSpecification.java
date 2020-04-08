@@ -48,11 +48,11 @@ public class PersonSpecification extends SpecificationBase<PersonFilter> {
         if (nonNull(getObject().getBirthDateStart()) && nonNull(getObject().getBirthDateEnd())) {
             predicates.add(criteriaBuilder.between(root.get(Person_.birthDate), getObject().getBirthDateStart(), getObject().getBirthDateEnd()));
         } else if (nonNull(getObject().getBirthDateStart())) {
-            predicates.add(criteriaBuilder.between(root.get(Person_.birthDate), getObject().getBirthDateStart(), LocalDate.MAX));
+            predicates.add(criteriaBuilder.between(root.get(Person_.birthDate), getObject().getBirthDateStart(), LocalDate.of(2100, 12, 31)));
         } else if (nonNull(getObject().getBirthDateEnd())) {
-            predicates.add(criteriaBuilder.between(root.get(Person_.birthDate), LocalDate.MIN, getObject().getBirthDateEnd()));
+            predicates.add(criteriaBuilder.between(root.get(Person_.birthDate), LocalDate.of(1500, 01, 01), getObject().getBirthDateEnd()));
         }
 
-        return super.toPredicate(root, criteriaQuery, criteriaBuilder);
+        return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
     }
 }

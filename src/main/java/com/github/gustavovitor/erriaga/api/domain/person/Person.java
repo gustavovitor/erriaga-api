@@ -28,8 +28,8 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Size(max = 255)
+    @NotNull(message = "O nome é obrigatório.")
+    @Size(max = 255, message = "O nome não pode ter mais de 255 caracteres.")
     @ApiModelProperty("Nome")
     private String name;
 
@@ -37,24 +37,24 @@ public class Person {
     @ApiModelProperty("Gênero")
     private Gender gender;
 
-    @Email
+    @Email(message = "Email inválido")
     @ApiModelProperty("Email Válido")
     private String email;
 
-    @NotNull
+    @NotNull(message = "A data de nascimento é obrigatória.")
     @ApiModelProperty("Data de Nascimento")
     private LocalDate birthDate;
 
-    @Size(max = 255)
+    @Size(max = 255, message = "A naturalidade não pode ter mais de 255 caracteres.")
     @ApiModelProperty("Naturalidade")
     private String birthPlace;
 
-    @Size(max = 255)
+    @Size(max = 255, message = "A nacionalidade não pode ter mais de 255 caracteres.")
     @ApiModelProperty("Nacionalidade")
     private String nationality;
 
-    @CPF
-    @NotNull
+    @CPF(message = "CPF inválido")
+    @NotNull(message = "O CPF é obrigatório.")
     @Column(unique = true)
     @ApiModelProperty("CPF Válido")
     private String cpf;
