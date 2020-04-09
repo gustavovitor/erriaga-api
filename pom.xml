@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <maker.version>0.0.7-SNAPSHOT</maker.version>
+        <maker.version>0.0.7</maker.version>
         <hibernate-jpamodelgen.version>5.4.12.Final</hibernate-jpamodelgen.version>
         <swagger.version>2.9.2</swagger.version>
     </properties>
