@@ -1,5 +1,6 @@
 package com.github.gustavovitor.erriaga.api.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -27,6 +28,7 @@ public class AppUser {
     @Size(max = 255, message = "O email não pode ser maior que 255 caracteres.")
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotNull(message = "A senha não pode ser vazia.")
     @NotEmpty(message = "A senha não pode ser vazia.")
     private String password;

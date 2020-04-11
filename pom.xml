@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <maker.version>0.0.7</maker.version>
+        <maker.version>0.0.8-SNAPSHOT</maker.version>
         <hibernate-jpamodelgen.version>5.4.12.Final</hibernate-jpamodelgen.version>
         <swagger.version>2.9.2</swagger.version>
         <spring-security-oauth2.version>2.2.0.RELEASE</spring-security-oauth2.version>
@@ -67,6 +67,12 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-bean-validators</artifactId>
             <version>${swagger.version}</version>
         </dependency>
 

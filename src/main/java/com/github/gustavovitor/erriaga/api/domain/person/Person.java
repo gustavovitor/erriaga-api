@@ -38,7 +38,7 @@ public class Person {
     @ApiModelProperty("Gênero")
     private Gender gender;
 
-    @Email(message = "Email inválido")
+    @Email(message = "Email inválido.")
     @ApiModelProperty("Email Válido")
     private String email;
 

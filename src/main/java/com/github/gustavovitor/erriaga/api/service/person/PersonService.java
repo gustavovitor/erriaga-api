@@ -8,5 +8,4 @@ import com.github.gustavovitor.maker.service.ServiceMaker;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonService extends ServiceMaker<PersonRepository, Person, Long, PersonFilter, PersonSpecification> {
-}
+public class PersonService extends ServiceMaker<PersonRepository, Person, Long, PersonFilter, PersonSpecification> { }
