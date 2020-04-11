@@ -7,5 +7,17 @@ import com.github.gustavovitor.erriaga.api.repository.person.spec.filter.PersonF
 import com.github.gustavovitor.maker.service.ServiceMaker;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+
+import static java.util.Objects.isNull;
+
 @Service
-public class PersonService extends ServiceMaker<PersonRepository, Person, Long, PersonFilter, PersonSpecification> { }
+public class PersonService extends ServiceMaker<PersonRepository, Person, Long, PersonFilter, PersonSpecification> {
+
+    @Override
+    public void beforeDelete(Person object) {
+        if (isNull(object)) {
+            throw new EntityNotFoundException();
+        }
+    }
+}

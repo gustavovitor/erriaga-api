@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,10 +46,17 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({DataIntegrityViolationException.class})
-    public ResponseEntity<Object> handlerDataIntegrityViolationException(RuntimeException ex, WebRequest request) {
+    public ResponseEntity<Object> handlerDataIntegrityViolationException(DataIntegrityViolationException ex, WebRequest request) {
         String mensagem = MessageUtil.getMessage("duplicated.entity.exception");
         List<ErrorHandler> erros = Arrays.asList(new ErrorHandler(mensagem, ex.toString(), ErrorCodes.DATA_INTEGRITY, ex.getMessage()));
         return handleExceptionInternal(ex, new APIError(erros.size(), erros), new HttpHeaders(), HttpStatus.CONFLICT, request);
+    }
+
+    @ExceptionHandler({EntityNotFoundException.class})
+    public ResponseEntity<Object> handlerEntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
+        String mensagem = MessageUtil.getMessage("entity.not.found.exception");
+        List<ErrorHandler> erros = Arrays.asList(new ErrorHandler(mensagem, ex.toString(), ErrorCodes.ENTITY_NOT_FOUND, ex.getMessage()));
+        return handleExceptionInternal(ex, new APIError(erros.size(), erros), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     private List<ErrorHandler> createErrorList(BindingResult bindingResult) {
