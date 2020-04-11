@@ -1,5 +1,5 @@
 # Erriagá Backend
-![Build and Test](https://github.com/gustavovitor/erriaga-api/workflows/Build/badge.svg?branch=master)
+![Build and Test](https://github.com/gustavovitor/erriaga-api/workflows/Build%20and%20Test/badge.svg?branch=master)
 
 Backend feito em Java, utilizando Spring Boot 2.2.6.RELEASE e Java 11.
 
