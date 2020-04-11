@@ -3,6 +3,7 @@ package com.github.gustavovitor.erriaga.api.domain.user;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     @Email(message = "Isso não parece um email válido.")
     @NotNull(message = "O email não pode ser vazia.")
     @NotEmpty(message = "O email não pode ser vazio.")

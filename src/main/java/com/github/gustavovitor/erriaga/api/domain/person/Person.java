@@ -54,7 +54,7 @@ public class Person {
     @ApiModelProperty("Nacionalidade")
     private String nationality;
 
-    @CPF(message = "CPF inválido")
+    @CPF(message = "CPF inválido.")
     @NotNull(message = "O CPF é obrigatório.")
     @Column(unique = true)
     @ApiModelProperty("CPF Válido")
