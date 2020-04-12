@@ -84,7 +84,8 @@ public class SwaggerConfig {
     private Predicate<String> paths() {
         return or(
                 regex("/person.*"),
-                regex("/token/revoke"));
+                regex("/token/revoke"),
+                regex("/chat.*"));
     }
 
     private SecurityContext xAuthTokenSecurityContext() {

@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.SingularAttribute;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -54,22 +55,19 @@ public class PersonSpecification extends SpecificationBase<PersonFilter> {
             predicates.add(criteriaBuilder.between(root.get(Person_.birthDate), LocalDate.of(1500, 01, 01), getObject().getBirthDateEnd()));
         }
 
-        if (nonNull(getObject().getRegisterDateStart()) && nonNull(getObject().getRegisterDateEnd())) {
-            predicates.add(criteriaBuilder.between(root.get(Person_.registerAt), getObject().getRegisterDateStart(), getObject().getRegisterDateEnd()));
-        } else if (nonNull(getObject().getRegisterDateStart())) {
-            predicates.add(criteriaBuilder.between(root.get(Person_.registerAt), getObject().getRegisterDateStart(), LocalDateTime.of(2100, 12, 31, 23, 59, 59)));
-        } else if (nonNull(getObject().getRegisterDateEnd())) {
-            predicates.add(criteriaBuilder.between(root.get(Person_.registerAt), LocalDateTime.of(1500, 01, 01, 0, 0, 0), getObject().getRegisterDateEnd()));
-        }
-
-        if (nonNull(getObject().getModifiedDateStart()) && nonNull(getObject().getModifiedDateEnd())) {
-            predicates.add(criteriaBuilder.between(root.get(Person_.modifiedAt), getObject().getModifiedDateStart(), getObject().getModifiedDateEnd()));
-        } else if (nonNull(getObject().getModifiedDateStart())) {
-            predicates.add(criteriaBuilder.between(root.get(Person_.modifiedAt), getObject().getModifiedDateStart(), LocalDateTime.of(2100, 12, 31, 23, 59, 59)));
-        } else if (nonNull(getObject().getModifiedDateEnd())) {
-            predicates.add(criteriaBuilder.between(root.get(Person_.modifiedAt), LocalDateTime.of(1500, 01, 01, 0, 0, 0), getObject().getModifiedDateEnd()));
-        }
+        betweenFullLocalDateTimeSpecification(root, criteriaBuilder, predicates, getObject().getRegisterDateStart(), getObject().getRegisterDateEnd(), Person_.registerAt);
+        betweenFullLocalDateTimeSpecification(root, criteriaBuilder, predicates, getObject().getModifiedDateStart(), getObject().getModifiedDateEnd(), Person_.modifiedAt);
 
         return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+    }
+
+    private void betweenFullLocalDateTimeSpecification(Root<PersonFilter> root, CriteriaBuilder criteriaBuilder, List<Predicate> predicates, LocalDateTime registerDateStart, LocalDateTime registerDateEnd, SingularAttribute<Person, LocalDateTime> registerAt) {
+        if (nonNull(registerDateStart) && nonNull(registerDateEnd)) {
+            predicates.add(criteriaBuilder.between(root.get(registerAt), registerDateStart, registerDateEnd));
+        } else if (nonNull(registerDateStart)) {
+            predicates.add(criteriaBuilder.between(root.get(registerAt), registerDateStart, LocalDateTime.of(2100, 12, 31, 23, 59, 59)));
+        } else if (nonNull(registerDateEnd)) {
+            predicates.add(criteriaBuilder.between(root.get(registerAt), LocalDateTime.of(1500, 01, 01, 0, 0, 0), registerDateEnd));
+        }
     }
 }

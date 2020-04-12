@@ -24,6 +24,10 @@ public class AppUserService {
     @Autowired
     private APIConfig apiConfig;
 
+    public AppUser findById(Long id) {
+        return appUserRepository.findById(id).orElse(null);
+    }
+
     public AppUser findByEmail(String email) {
         return appUserRepository.findByEmail(email).orElse(null);
     }
