@@ -6,5 +6,5 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ChatMessageRepository extends RepositoryMaker<ChatMessage, Long> {
-    Page<ChatMessage> findAllByOrderByMessageDatetimeAsc(Pageable pageable);
+    Page<ChatMessage> findAllByOrderByMessageDatetimeDesc(Pageable pageable);
 }

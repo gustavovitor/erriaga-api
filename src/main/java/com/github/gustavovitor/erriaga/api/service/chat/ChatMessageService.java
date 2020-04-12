@@ -29,7 +29,7 @@ public class ChatMessageService extends ServiceMaker<ChatMessageRepository, Chat
     private AppUserService appUserService;
 
     public Page<ChatMessage> findAllOrdered(Pageable pageable) {
-        return getRepository().findAllByOrderByMessageDatetimeAsc(pageable);
+        return getRepository().findAllByOrderByMessageDatetimeDesc(pageable);
     }
 
     @Override
