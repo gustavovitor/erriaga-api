@@ -47,7 +47,7 @@ public class SwaggerConfig {
                 .groupName("Auth")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.github.gustavovitor.erriaga.api.resource"))
-                .paths(Predicates.in(Arrays.asList("/public/user/register", "/oauth/token")))
+                .paths(Predicates.in(Arrays.asList("/public/user/register", "/oauth/token", "/public/sources")))
                 .build()
                 .securitySchemes(Collections.singletonList(new BasicAuth("Basic")))
                 .securityContexts(Collections.singletonList(xBasicSecurityContext()));

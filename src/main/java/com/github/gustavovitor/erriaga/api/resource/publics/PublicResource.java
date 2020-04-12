@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/source")
+@RequestMapping("/public/source")
 public class PublicResource {
 
     @GetMapping

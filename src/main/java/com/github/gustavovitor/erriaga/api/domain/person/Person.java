@@ -13,11 +13,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -59,4 +59,9 @@ public class Person {
     @Column(unique = true)
     @ApiModelProperty("CPF Válido")
     private String cpf;
+
+    @Column(updatable = false)
+    private LocalDateTime registerAt;
+
+    private LocalDateTime modifiedAt;
 }

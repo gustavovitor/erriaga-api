@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 
+import java.time.LocalDateTime;
+
 import static java.util.Objects.isNull;
 
 @Service
@@ -19,5 +21,21 @@ public class PersonService extends ServiceMaker<PersonRepository, Person, Long, 
         if (isNull(object)) {
             throw new EntityNotFoundException();
         }
+    }
+
+    @Override
+    public void beforeInsert(Person object) {
+        object.setRegisterAt(LocalDateTime.now());
+        object.setModifiedAt(LocalDateTime.now());
+    }
+
+    @Override
+    public void beforePatch(Person savedObject, Person object) {
+        object.setModifiedAt(LocalDateTime.now());
+    }
+
+    @Override
+    public void beforeUpdate(Person savedObject, Person object) {
+        object.setModifiedAt(LocalDateTime.now());
     }
 }

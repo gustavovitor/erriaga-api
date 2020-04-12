@@ -12,6 +12,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,22 @@ public class PersonSpecification extends SpecificationBase<PersonFilter> {
             predicates.add(criteriaBuilder.between(root.get(Person_.birthDate), getObject().getBirthDateStart(), LocalDate.of(2100, 12, 31)));
         } else if (nonNull(getObject().getBirthDateEnd())) {
             predicates.add(criteriaBuilder.between(root.get(Person_.birthDate), LocalDate.of(1500, 01, 01), getObject().getBirthDateEnd()));
+        }
+
+        if (nonNull(getObject().getRegisterDateStart()) && nonNull(getObject().getRegisterDateEnd())) {
+            predicates.add(criteriaBuilder.between(root.get(Person_.registerAt), getObject().getRegisterDateStart(), getObject().getRegisterDateEnd()));
+        } else if (nonNull(getObject().getRegisterDateStart())) {
+            predicates.add(criteriaBuilder.between(root.get(Person_.registerAt), getObject().getRegisterDateStart(), LocalDateTime.of(2100, 12, 31, 23, 59, 59)));
+        } else if (nonNull(getObject().getRegisterDateEnd())) {
+            predicates.add(criteriaBuilder.between(root.get(Person_.registerAt), LocalDateTime.of(1500, 01, 01, 0, 0, 0), getObject().getRegisterDateEnd()));
+        }
+
+        if (nonNull(getObject().getModifiedDateStart()) && nonNull(getObject().getModifiedDateEnd())) {
+            predicates.add(criteriaBuilder.between(root.get(Person_.modifiedAt), getObject().getModifiedDateStart(), getObject().getModifiedDateEnd()));
+        } else if (nonNull(getObject().getModifiedDateStart())) {
+            predicates.add(criteriaBuilder.between(root.get(Person_.modifiedAt), getObject().getModifiedDateStart(), LocalDateTime.of(2100, 12, 31, 23, 59, 59)));
+        } else if (nonNull(getObject().getModifiedDateEnd())) {
+            predicates.add(criteriaBuilder.between(root.get(Person_.modifiedAt), LocalDateTime.of(1500, 01, 01, 0, 0, 0), getObject().getModifiedDateEnd()));
         }
 
         return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
