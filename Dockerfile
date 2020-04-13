@@ -5,4 +5,4 @@ RUN mvn package -DskipTests && mv /app/target/*.jar /app/target/app.jar
 
 FROM openjdk:11
 COPY --from=build /app/target/app.jar app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "/app.jar"]

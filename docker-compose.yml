@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:latest
+    networks:
+      - pg-network
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=1
+      - POSTGRES_DB=erriaga
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - pg-network
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_URL=postgres
+
+networks:
+  pg-network:
+    driver: bridge
