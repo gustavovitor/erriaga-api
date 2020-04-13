@@ -12,7 +12,7 @@ Disponível no Docker Hub, [clique aqui...](https://hub.docker.com/r/gustavovito
 Então, para subir a imagem da API em Docker, clone o projeto e execute o ```docker-compose up``` :)
 
 Para subir a imagem da API:
-```docker run -dp 8080:8080 gustavovitor/erriaga:latest -name erriaga```
+```docker run -dp 8080:8080 --name erriaga gustavovitor/erriaga:latest```
 
 A API utiliza o contexto ```/api``` quando inicializar o container [clique aqui...](http://localhost:8080/api/swagger-ui.html?urls.primaryName=Auth)
 
@@ -43,3 +43,9 @@ As rotas são geradas através de uma biblioteca chamada [Maker Project](https:/
 Essa biblioteca gera rotas no padrão Richardson. (Falta apenas o último nível de implementação, o HATEOAS, está no meu roadmap para desenvolver dentro do Maker =])
 
 Utilizo PUT nos métodos findAll e findAllPageable para facilitar a entrada de dados para especificação dentro do Maker.
+
+##### Planejamento
+
+Aquele planejamento no trello :)
+
+<img src="https://i.imgur.com/AsXhQ6x.jpg" alt="Planejamento no Trello"/>
