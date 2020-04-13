@@ -17,11 +17,25 @@ services:
       - 8080:8080
     networks:
       - pg-network
+      - app-network
     depends_on:
       - postgres
     environment:
       - POSTGRES_URL=postgres
+  ui:
+    image: gustavovitor/erriaga-ui:latest
+    ports:
+      - 4200:4200
+    networks:
+      - app-network
+    depends_on:
+      - app
+    environment:
+      - UI_PORT=4200
 
 networks:
   pg-network:
+    driver: bridge
+
+  app-network:
     driver: bridge
