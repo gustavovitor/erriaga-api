@@ -7,6 +7,10 @@ Backend feito em Java, utilizando Spring Boot 2.2.6.RELEASE e Java 11.
 
 Disponível no Docker Hub, [clique aqui...](https://hub.docker.com/r/gustavovitor/erriaga)
 
+***Calma!*** Infelizmente não consegui criar a imagem sem parâmetros, por causa do banco de dados, (não tive tempo de criar a imagem, pode olhar a hora desse último commit :D). Mas, criei um docker-compose.yml que sobe a aplicação também.
+
+Então, para subir a imagem da API em Docker, clone o projeto e execute o ```docker-compose up``` :)
+
 Para subir a imagem da API:
 ```docker run -dp 8080:8080 gustavovitor/erriaga:latest -name erriaga```
 
