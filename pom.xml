@@ -19,7 +19,7 @@
         <maker.version>0.0.9</maker.version>
         <hibernate-jpamodelgen.version>5.4.12.Final</hibernate-jpamodelgen.version>
         <swagger.version>2.9.2</swagger.version>
-        <spring-security-oauth2.version>2.2.0.RELEASE</spring-security-oauth2.version>
+        <spring-security-oauth2.version>2.2.4.RELEASE</spring-security-oauth2.version>
         <spring-security-jwt.version>1.0.9.RELEASE</spring-security-jwt.version>
     </properties>
 
